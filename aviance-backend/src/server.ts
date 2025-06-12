@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "../config/db"
 import userRoutes from '../routes/userRoutes'
+import airplaneRoutes from '../routes/airplaneRoutes';
+
 
 dotenv.config();
 connectDB();
@@ -15,7 +17,9 @@ app.get('/',(_req,res)=>{
     res.send("Aviance API is running")
 })
 
+
 app.use('/api/users', userRoutes);
+app.use('/api/airplanes', airplaneRoutes);
 
 const PORT=process.env.PORT||5000;
 app.listen(PORT,()=>{

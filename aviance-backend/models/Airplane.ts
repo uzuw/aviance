@@ -13,23 +13,18 @@ export interface IAirplane extends Document {
   images: string[];
 }
 
-const airplaneSchema = new Schema<IAirplane>(
-  {
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    price: { type: Number, required: true },
-    manufacturer: { type: String, required: true },
-    aircraftModel: { type: String, required: true }, // renamed
-    year: { type: Number, required: true },
-    engineType: { type: String, required: true },
-    hoursFlown: { type: Number, required: true },
-    seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    images: [{ type: String }],
-  },
-  {
-    timestamps: true,
-  }
-);
+const airplaneSchema = new Schema<IAirplane>({
+  title: { type: String, required: true },
+  aircraftModel: { type: String, required: true },
+  engineType: { type: String, required: true },
+  year: { type: Number, required: true },
+  price: { type: Number, required: true },
+  description: { type: String },
+  manufacturer: { type: String, required: true },
+  hoursFlown: { type: Number, required: true },
+  seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+});
+
 
 const Airplane = mongoose.model<IAirplane>('Airplane', airplaneSchema);
 export default Airplane;
